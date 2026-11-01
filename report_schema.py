@@ -43,8 +43,7 @@ class Component(ABC):
         pass
     
     @abstractmethod
-    @staticmethod
-    def print_comp(key:str=None, dict_data:dict[str,str]=None)->str:
+    def compose(self, dict_data:dict[str,dict]=None)->str:
         pass
 
 class Paragraph(Component):
@@ -78,12 +77,14 @@ class Paragraph(Component):
     def get_key(self):
         return self.key
 
-    @staticmethod
-    def print_comp(key = None, dict_data:dict[str, str]=None)->str:
-        content_str = dict_data.get(key_content, f'!!!ERROR: No content given for the paragraph "{key}"')
+    def compose(self, dict_data:dict[str, str]=None)->str:
+        dict_this = dict_data.get(self.key)
+        content_str = ''
+        if dict_this:
+            content_str = dict_this.get(key_content, f'!!!ERROR: No content given for the paragraph "{self.key}"')
+        else:
+            content_str = f'!!!ERROR: No content given for the paragraph "{self.key}"'
         return content_str
-
-
 
 class Table(Component):
     def __init__(self, key:str=None, topic:str=None, list_scope:list[Any]=None, list_ref:list[Any]=None):
@@ -110,10 +111,12 @@ class Table(Component):
     def get_key(self):
         return self.key
 
-    @staticmethod
-    def print_comp(key=None, dict_data:dict[str, str]=None)->str:
-        csv = dict_data.get(key_content)
-        file_name_stem = f'table_{key}'
+    def compose(self, dict_data:dict[str, str]=None)->str:
+        dict_this = dict_data.get(self.key)
+        if not dict_this:
+            return f'For key "{self.key}", table data is empty.'
+        csv = dict_this.get(key_content, '"<empty_table>"')
+        file_name_stem = f'table_{self.key}'
         n = 1
         file_name = file_name_stem+'.csv'
         if not os.path.isfile(file_name):
@@ -152,21 +155,19 @@ class Section(Component):
     def get_key(self):
         return self.key
 
-
-    @staticmethod
-    def print_comp(key=None, dict_data:dict[str, str] = None):
-        pass
-
     def compose(self, dict_data:dict[str, dict]=None) -> str:
         str_section = self.title+'\n'
+        dict_this = dict_data.get(self.key)
+        if not dict_this:
+            return f'For a section key "{self.key}", the JSON has no data.\n'
         for comp in self.list_comp:
             key_this = comp.get_key()
             dict_comp = dict_data[key_this]
             if isinstance(comp, Paragraph):
-                str_section += Paragraph.print_comp(key=key_this, dict_data=dict_comp)
+                str_section += Paragraph.compose(key=key_this, dict_data=dict_comp)
                 str_section += '\n'
             if isinstance(comp, Table):
-                str_section += Table.print_comp(key=key_this, dict_data=dict_comp)
+                str_section += Table.compose(key=key_this, dict_data=dict_comp)
 
 class Chapter(Component):
     def __init__(self, key:str=None, title:str=None, ):

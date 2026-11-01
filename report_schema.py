@@ -10,6 +10,7 @@ cat_table = 'category_table'
 #key
 key_cat = 'category'
 key_content = 'content'
+key_footnote_table = 'footnote_for_table'
 
 #Category
 descr_key_cat = 'Category of the report component.'
@@ -81,9 +82,9 @@ class Paragraph(Component):
         dict_this = dict_data.get(self.key)
         content_str = ''
         if dict_this:
-            content_str = dict_this.get(key_content, f'!!!ERROR: No content given for the paragraph "{self.key}"')
+            content_str = dict_this.get(key_content)+'\n'
         else:
-            content_str = f'!!!ERROR: No content given for the paragraph "{self.key}"'
+            content_str = f'!!!ERROR: No content given for the paragraph "{self.key}"\n'
         return content_str
 
 class Table(Component):
@@ -97,6 +98,11 @@ class Table(Component):
         content = Primitive(prim_type='string',
                             key=key_content,
                             description='This property is to contain a table in the CSV format with a header.')
+        footnote = Primitive(prim_type='string',
+                             key=key_footnote_table,
+                             description='This property is to contain footnotes for the table. Can contain multiple notes. Please enumerate the notes and the corresponding contents in the table to link them properly.',
+                             nullable=True,
+                             required=False) 
         cat = Primitive(prim_type='string',
                         key=key_cat,
                         description=descr_key_cat,
@@ -128,8 +134,13 @@ class Table(Component):
             file_name = f'{file_name_stem}_{n}.csv'
             with open(file=file_name, mode='x') as f:
                 f.write(csv)
-        
-        return f'\nRefer to "{file_name}" for the table.\n'
+
+        footnote = dict_this.get(key_footnote_table)
+        if footnote:
+            return (f'\nRefer to "{file_name}" for the table.\n'
+                    f'<footnote>: {footnote}\n\n')
+        else:
+            return f'\nRefer to "{file_name}" for the table.\n\n'
         
         
 class Section(Component):
@@ -156,22 +167,37 @@ class Section(Component):
         return self.key
 
     def compose(self, dict_data:dict[str, dict]=None) -> str:
-        str_section = self.title+'\n'
+        str_section = '\n\n'+self.title+'\n'
         dict_this = dict_data.get(self.key)
         if not dict_this:
             return f'For a section key "{self.key}", the JSON has no data.\n'
         for comp in self.list_comp:
-            key_this = comp.get_key()
-            dict_comp = dict_data[key_this]
-            if isinstance(comp, Paragraph):
-                str_section += Paragraph.compose(key=key_this, dict_data=dict_comp)
-                str_section += '\n'
-            if isinstance(comp, Table):
-                str_section += Table.compose(key=key_this, dict_data=dict_comp)
+            # key_this = comp.get_key()
+            # dict_comp = dict_data[key_this]
+            # if isinstance(comp, Paragraph):
+            #     str_section += Paragraph.compose(key=key_this, dict_data=dict_comp)
+            #     str_section += '\n'
+            # if isinstance(comp, Table):
+            #     str_section += Table.compose(key=key_this, dict_data=dict_comp)
+            str_section += comp.compose(dict_data=dict_this)
+
 
 class Chapter(Component):
-    def __init__(self, key:str=None, title:str=None, ):
-        
+    def __init__(self, key:str=None, title:str=None, topic:str=None, list_sect:list[Section]=None):
+        self.key = key
+        self.title = title
+        self.topic = topic
+        self.list_sect = list_sect
+
+        descrp = ''
+        if topic:
+            descrp=f'One chapter in the report. the title is "{title}" dealing with {topic}.'
+        else:
+            descrp=f'One chapter in the report. the title is "{title}".'
+        schema_sect = [s.get_schema() for s in list_sect]
+        self.schema = Objason(key=key,
+                              props=schema_sect,
+                              description=descrp)
 
         
 

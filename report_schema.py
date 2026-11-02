@@ -6,6 +6,8 @@ import os
 #Category
 cat_paragraph = 'category_paragraph'
 cat_table = 'category_table'
+cat_sect = 'category_section'
+cat_chapt = 'category_chapter'
 
 #key
 key_cat = 'category'
@@ -48,10 +50,16 @@ class Component(ABC):
         pass
 
 class Paragraph(Component):
-    def __init__(self, key:str=None, topic:str=None, list_ref:list[Any]=None):
+    def __init__(self, key:str=None, topic:str=None, user_message:str=None, list_ref:list[Any]=None):
         self.key = key
         self.topic = topic
         ref = format_ref(list_ref=list_ref)
+
+        if not user_message:
+            user_message = ''
+        else:
+            user_message = "\nAdditional message: "+user_message
+
         descrp_paragraph = (f'Please compose a paragrap. The topic of this paragraph is {topic}. Please refer to at least {ref} and any other neccesary material when composing. '
                             f'Please put the result as the property "{key_content}".'
                             'If figures/photos are appropriate, please put a placeholders at the end of the paragraph in the format\n'
@@ -60,7 +68,7 @@ class Paragraph(Component):
                             '   -<description>: A short description of the figure/photo.\n'
                             '   -<source>: The source file.\n'
                             '   -<page>: Page number in the source file.\n'
-                            'Please compose in Japanese language. The paragraph can be as long as needed.')
+                            'Please compose in Japanese language. The paragraph can be as long as needed.'+user_message)
         content = Primitive(prim_type='string',
                             key=key_content,
                             description=f'This property is to contain sentences composing the paragraph.')
@@ -88,11 +96,16 @@ class Paragraph(Component):
         return content_str
 
 class Table(Component):
-    def __init__(self, key:str=None, topic:str=None, list_scope:list[Any]=None, list_ref:list[Any]=None):
+    def __init__(self, key:str=None, topic:str=None,  user_message:str=None, list_scope:list[Any]=None, list_ref:list[Any]=None):
         self.key = key
         self.topic = topic
         ref = format_ref(list_ref=list_ref)
         scope = format_scope(list_scope=list_scope)
+
+        if not user_message:
+            user_message = ''
+        else:
+            user_message = "\nAdditional message: "+user_message
         
         descrp_table = f'Please place a table in the CSV format with a header. The topic of the table is {topic}, and the scope of the table, in terms of production campaign, is {scope}. For data, please refer to {ref} '
         content = Primitive(prim_type='string',
@@ -152,14 +165,24 @@ class Section(Component):
 
         descrp = ''
         if topic:
-            descrp=f'One section in the report. the title is "{title}" dealing with {topic}.'
+            descrp=(f'One section in the report. the title is "{title}" dealing with {topic}. '
+                    'A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.')
         else:
-            descrp=f'One section in the report. the title is "{title}".'
-        schema_comp = [c.get_schema() for c in list_comp]
-        self.schema = Objason(key=key,
-                              props=schema_comp,
-                              description=descrp)
+            descrp=(f'One section in the report. the title is "{title}". '
+                    'A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.')
 
+        schema_comp = [c.get_schema() for c in list_comp]
+        content = Objason(key=key_content,
+                          props=schema_comp,
+                          description='The main content of a section.')
+        cat = Primitive(prim_type='string',
+                        key=key_cat,
+                        description=descr_key_cat,
+                        const=cat_sect)
+        self.get_schema = Objason(key=key,
+                                  props=[cat, content],
+                                  description=descrp)
+        
     def get_schema(self)->Objason:
         return self.schema
 
@@ -172,13 +195,7 @@ class Section(Component):
         if not dict_this:
             return f'For a section key "{self.key}", the JSON has no data.\n'
         for comp in self.list_comp:
-            # key_this = comp.get_key()
-            # dict_comp = dict_data[key_this]
-            # if isinstance(comp, Paragraph):
-            #     str_section += Paragraph.compose(key=key_this, dict_data=dict_comp)
-            #     str_section += '\n'
-            # if isinstance(comp, Table):
-            #     str_section += Table.compose(key=key_this, dict_data=dict_comp)
+            
             str_section += comp.compose(dict_data=dict_this)
 
 
@@ -191,13 +208,41 @@ class Chapter(Component):
 
         descrp = ''
         if topic:
-            descrp=f'One chapter in the report. the title is "{title}" dealing with {topic}.'
+            descrp=(f'One chapter in the report. the title is "{title}" dealing with {topic}. A chapter can contain multiple sections as its contents. '
+                    'For contents, please, follow the instructions of each section, paragraph, and table. ')
         else:
-            descrp=f'One chapter in the report. the title is "{title}".'
+            descrp=(f'One chapter in the report. the title is "{title}".'
+                    'For contents, please, follow the instructions of each section, paragraph, and table. ')
+
         schema_sect = [s.get_schema() for s in list_sect]
+        content = Objason(key = key_content,
+                          props=schema_sect,
+                          description='The main content of the chapter.')
+        cat = Primitive(prim_type='string',
+                        key=key_cat,
+                        description=descr_key_cat,
+                        const=cat_chapt)
         self.schema = Objason(key=key,
-                              props=schema_sect,
+                              props=[cat, content],
                               description=descrp)
+
+    def get_schema(self):
+        return self.schema
+
+    def get_key(self):
+        return self.key
+
+    def compose(self, dict_data = None):
+        dict_this = dict_data.get(self.key)
+        if not dict_this:
+            return f'For key "{self.key}", the input JSON has no data.'
+        str_output = f'\n\n{self.title}\n'
+        for sect in self.list_sect:
+            str_output += sect.compose()
+
+    
+        
+        
 
         
 

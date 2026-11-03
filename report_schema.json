@@ -1,0 +1,930 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Sample report",
+  "type": "object",
+  "properties": {
+    "ch1": {
+      "description": "One chapter in the report. the title is \"Chapter 1\" dealing with Introduction. A chapter can contain multiple sections as its contents. For contents, please, follow the instructions of each section, paragraph, and table. ",
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Category of the report component.",
+          "type": "string",
+          "const": "category_chapter"
+        },
+        "content": {
+          "description": "The main content of the chapter.",
+          "type": "object",
+          "properties": {
+            "s1": {
+              "description": "One section in the report. the title is \"Section 1\" dealing with Overview. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Why an egg is a perfect food.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Nutrients in an egg.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Example of traditional egg recipes.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p4": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is A new egg dish is introduced in this report.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3",
+                    "p4"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "s1"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "category",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "ch2": {
+      "description": "One chapter in the report. the title is \"Chapter 2: Why breakthrough is needed\" dealing with Importance. A chapter can contain multiple sections as its contents. For contents, please, follow the instructions of each section, paragraph, and table. ",
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Category of the report component.",
+          "type": "string",
+          "const": "category_chapter"
+        },
+        "content": {
+          "description": "The main content of the chapter.",
+          "type": "object",
+          "properties": {
+            "s1": {
+              "description": "One section in the report. the title is \"Section 1\" dealing with Need. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Current challenges.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Need for change.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Preceding studies.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            },
+            "s2": {
+              "description": "One section in the report. the title is \"Section 2\" dealing with Hypothesis. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Proposed solution.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "s1",
+            "s2"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "category",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "ch3": {
+      "description": "One chapter in the report. the title is \"Chapter 3: Results\" dealing with Results. A chapter can contain multiple sections as its contents. For contents, please, follow the instructions of each section, paragraph, and table. ",
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Category of the report component.",
+          "type": "string",
+          "const": "category_chapter"
+        },
+        "content": {
+          "description": "The main content of the chapter.",
+          "type": "object",
+          "properties": {
+            "s1": {
+              "description": "One section in the report. the title is \"Section 1\" dealing with Whole fried egg with shell. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Cooking method of fried egg results.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Explosion. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Loss of life. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            },
+            "s2": {
+              "description": "One section in the report. the title is \"Section 2\" dealing with Ultracentrifuged egg. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Cooking method of the ultracentrifuged egg. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Isotopical separation of atoms constituting the egg.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "t2": {
+                      "description": "Please place a table. The topic of the table is Separation results., and the scope of the table, in terms of production campaign, is T3-pilot campaign. For data, please refer to any relevant documents. Put one cell value per element. Use null for an empty cell.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_table"
+                        },
+                        "content": {
+                          "description": "This property is to contain a table.",
+                          "type": "object",
+                          "properties": {
+                            "header": {
+                              "description": "Column names of the table, from left to right.",
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            "rows": {
+                              "description": "Rows of the table, from top to bottom. Every row must have the same number of cells as \"header\".",
+                              "type": "array",
+                              "items": {
+                                "description": "One row of the table. Cells are in the same order as \"header\".",
+                                "type": "array",
+                                "items": {
+                                  "type": [
+                                    "string",
+                                    "number",
+                                    "null"
+                                  ]
+                                }
+                              }
+                            }
+                          },
+                          "required": [
+                            "header",
+                            "rows"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "footnote_for_table": {
+                          "description": "This property is to contain footnotes for the table. Can contain multiple notes. Please enumerate the notes and the corresponding contents in the table to link them properly. Please compose in Japanese language.",
+                          "type": [
+                            "string",
+                            "null"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Result (taste) of the dish.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p4": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Interference by the allied forces.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "t2",
+                    "p3",
+                    "p4"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "s1",
+            "s2"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "category",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "ch4": {
+      "description": "One chapter in the report. the title is \"Chapter 4: Discussion\" dealing with Discussions about the results. A chapter can contain multiple sections as its contents. For contents, please, follow the instructions of each section, paragraph, and table. ",
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Category of the report component.",
+          "type": "string",
+          "const": "category_chapter"
+        },
+        "content": {
+          "description": "The main content of the chapter.",
+          "type": "object",
+          "properties": {
+            "s1": {
+              "description": "One section in the report. the title is \"Section 1: danger of deep frying eggs\" dealing with Safety. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Phase change of water in an egg and thermodynamics. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Risk assessment. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Safety considerations. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            },
+            "s2": {
+              "description": "One section in the report. the title is \"Section 2: Ultracentrifuged egg\" dealing with Ultracentrifugation of eggs. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Why this is the best egg cuisine ever!!!. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Ethical aspect of centrifuging eggs.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is What triggered the military operation of the allied forces?. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p4": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Possible settlement and peace treaty.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3",
+                    "p4"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "s1",
+            "s2"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "category",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "ch5": {
+      "description": "One chapter in the report. the title is \"Chapter 5: Conclusion\" dealing with Conclusion. A chapter can contain multiple sections as its contents. For contents, please, follow the instructions of each section, paragraph, and table. ",
+      "type": "object",
+      "properties": {
+        "category": {
+          "description": "Category of the report component.",
+          "type": "string",
+          "const": "category_chapter"
+        },
+        "content": {
+          "description": "The main content of the chapter.",
+          "type": "object",
+          "properties": {
+            "s1": {
+              "description": "One section in the report. the title is \"Summary\" dealing with Conclusion. A section can have multiple paragraphs, tables, and figures. For details, please follow the instructions of each component.",
+              "type": "object",
+              "properties": {
+                "category": {
+                  "description": "Category of the report component.",
+                  "type": "string",
+                  "const": "category_section"
+                },
+                "content": {
+                  "description": "The main content of a section.",
+                  "type": "object",
+                  "properties": {
+                    "p1": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Why I love eggs.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p2": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Summary of findings.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "p3": {
+                      "description": "Please compose a paragraph. The topic of this paragraph is Ambitions for future work.. Please refer to at least any relevant documents and any other necessary material when composing. Please put the result as the property \"content\". If figures/photos are appropriate, please put placeholders at the end of the paragraph in the format\n   \"<placeholder: <description>; <source>; <page>>\"\nWhere:\n   -<description>: A short description of the figure/photo.\n   -<source>: The source file.\n   -<page>: Page number in the source file.\nPlease compose in Japanese language. The paragraph can be as long as needed.",
+                      "type": "object",
+                      "properties": {
+                        "category": {
+                          "description": "Category of the report component.",
+                          "type": "string",
+                          "const": "category_paragraph"
+                        },
+                        "content": {
+                          "description": "This property is to contain sentences composing the paragraph.",
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "category",
+                        "content"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "p1",
+                    "p2",
+                    "p3"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "category",
+                "content"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "s1"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "category",
+        "content"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "ch1",
+    "ch2",
+    "ch3",
+    "ch4",
+    "ch5"
+  ],
+  "additionalProperties": false
+}

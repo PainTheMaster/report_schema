@@ -21,24 +21,6 @@ key_rows_table = 'rows'
 descr_key_cat = 'Category of the report component.'
 
 
-# def format_ref(list_ref:list[Any]=None)->str:
-#     ref = ''
-#     if list_ref:
-#         ref_double_quote = [f'"{s}"' for s in list_ref]
-#         ref = ', '.join(ref_double_quote)
-#     else:
-#         ref = 'any relevant documents'
-#     return ref
-
-# def format_scope(list_scope:list[Any]=None)->str:
-#     ref = ''
-#     if list_scope:
-#         ref_double_quote = [f'"{s}"' for s in list_scope]
-#         ref = ', '.join(ref_double_quote)
-#     else:
-#         ref = 'T3-pilot campaign'
-#     return ref
-
 def format_list(list_itms:list[Any]=None, default:str='<placeholder>')->str:
     if not list_itms:
         return default
@@ -241,7 +223,7 @@ class Table(Component):
 
 
 class Section(Component):
-    def __init__(self, key:str=None, title:str=None, topic:str=None, list_comp:list[Component]=None):
+    def __init__(self, key:str=None, title:str=None, topic:str=None, list_comp:Component|list[Component]=None):
         self.key=key
         if not title:
             title = '<no title>'
@@ -249,6 +231,14 @@ class Section(Component):
         self.topic = topic
         if list_comp is None:
             list_comp = []
+        elif isinstance(list_comp, Component):
+            list_comp = [list_comp]
+        elif isinstance(list_comp, list):
+            for item in list_comp:
+                if not isinstance(item, Component):
+                    raise TypeError(f'All items in list_comp must be Component instances, but got {type(item)}')
+        else:
+            raise TypeError(f'list_comp must be a Component or list of Component instances, but got {type(list_comp)}')
         self.list_comp = list_comp
 
         if topic:
@@ -276,8 +266,13 @@ class Section(Component):
     def get_key(self):
         return self.key
 
-    def add_component(self, comp:Component):
-        self.list_comp.append(comp)
+    def add_component(self, comp:Component|list[Component]=None):
+        if comp is None:
+            return
+        if isinstance(comp, list):
+            self.list_comp.extend(comp)
+        else:
+            self.list_comp.append(comp)
 
     def compose(self, dict_data:dict[str, dict]=None) -> str:
         str_section = '\n\n'+self.title+'\n'
@@ -291,7 +286,7 @@ class Section(Component):
 
 
 class Chapter(Component):
-    def __init__(self, key:str=None, title:str=None, topic:str=None, list_sect:list[Section]=None):
+    def __init__(self, key:str=None, title:str=None, topic:str=None, list_sect:Section|list[Section]=None):
         self.key = key
         if not title:
             title = '<no title>'
@@ -299,6 +294,14 @@ class Chapter(Component):
         self.topic = topic
         if list_sect is None:
             list_sect = []
+        elif isinstance(list_sect, Section):
+            list_sect = [list_sect]
+        elif isinstance(list_sect, list):
+            for item in list_sect:
+                if not isinstance(item, Section):
+                    raise TypeError(f'All items in list_sect must be Section instances, but got {type(item)}')
+        else:
+            raise TypeError(f'list_sect must be a Section or list of Section instances, but got {type(list_sect)}')
         self.list_sect = list_sect
 
         if topic:
@@ -308,8 +311,13 @@ class Chapter(Component):
             self.descrp=(f'One chapter in the report. the title is "{title}". '
                          'For contents, please, follow the instructions of each section, paragraph, and table. ')
 
-    def add_section(self, sect:Section):
-        self.list_sect.append(sect)
+    def add_section(self, sect:Section|list[Section]=None):
+        if isinstance(sect, list):
+            self.list_sect.extend(sect)
+        elif isinstance(sect, Section):
+            self.list_sect.append(sect)
+        else:
+            raise TypeError(f'sect must be a Section or list of Section instances, but got {type(sect)}')
 
     def get_schema(self)->Objason:
         # The schema is built here, not in __init__(), so that sections added by add_section() are included.
@@ -341,17 +349,30 @@ class Chapter(Component):
 
 
 class Report:
-    def __init__(self, list_chapt:list[Chapter]=None, description:str=None):
+    def __init__(self, list_chapt:Chapter|list[Chapter]=None, description:str=None):
         if list_chapt is None:
             list_chapt = []
+        elif isinstance(list_chapt, Chapter):
+            list_chapt = [list_chapt]
+        elif isinstance(list_chapt, list):
+            for item in list_chapt:
+                if not isinstance(item, Chapter):
+                    raise TypeError(f'All items in list_chapt must be Chapter instances, but got {type(item)}')
+        else:
+            raise TypeError(f'list_chapt must be a Chapter or list of Chapter instances, but got {type(list_chapt)}')
         self.list_chapt = list_chapt
         if not description:
             description = ('A report consisting of chapters. '
                            'For contents, please follow the instructions of each chapter, section, paragraph, and table.')
         self.description = description
 
-    def add_chapter(self, chapt:Chapter):
-        self.list_chapt.append(chapt)
+    def add_chapter(self, chapt:Chapter|list[Chapter]=None):
+        if isinstance(chapt, list):
+            self.list_chapt.extend(chapt)
+        elif isinstance(chapt, Chapter):
+            self.list_chapt.append(chapt)
+        else:
+            raise TypeError(f'chapt must be a Chapter or list of Chapter instances, but got {type(chapt)}')
 
     def get_schema(self)->dict[str, Any]:
         '''Returns the JSON Schema of the whole report. The top level of the JSON data is {<chapter key>: <chapter>, ...}, which is what compose() receives.'''
